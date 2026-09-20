@@ -1,0 +1,31 @@
+<?php
+
+$conn = mysqli_connect("localhost", "root", "");
+
+if (!$conn) {
+    die("MySQL Connection Failed: " . mysqli_connect_error());
+}
+
+/* Create database */
+mysqli_query($conn, "CREATE DATABASE IF NOT EXISTS my_ecomdb5");
+
+/* Select database */
+mysqli_select_db($conn, "my_ecomdb5");
+
+/* Create table */
+$sql = "CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    password VARCHAR(8) NOT NULL,
+    phone VARCHAR(10) NOT NULL,
+    dob DATE NOT NULL,
+    email VARCHAR(150) NOT NULL,
+    state VARCHAR(100) NOT NULL,
+    country VARCHAR(100) NOT NULL,
+    district VARCHAR(100) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)";
+
+mysqli_query($conn, $sql);
+
+?>
